@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>猫猫头日记</h1>
+
+  <p>这里是 <em>猫猫头档案馆</em>, 记录了猫猫头的每日表现</p>
+
+  <h2>馆藏内容</h2>
+
+  <p>这里收录了：</p>
+  <ul>
+    <li><strong>日记数量:</strong> {{ num_diarys }}</li>
+    <li><strong>观察员数量:</strong> {{ num_authors }}</li>
+  </ul>
+{% endblock %}

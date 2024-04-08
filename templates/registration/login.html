@@ -1,0 +1,38 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  {% if form.errors %}
+    <p>用户名与密码不匹配，请重新尝试</p>
+  {% endif %}
+
+  {% if next %}
+    {% if user.is_authenticated %}
+    <p>用户未被授权</p>
+    {% else %}
+    <p>请登录查看此页</p>
+    {% endif %}
+  {% endif %}
+
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+
+    <div>
+      <!--<td>{{ form.username.label_tag }}</td>-->
+      <label for="username">用户名：</label>
+      <td>{{ form.username }}</td>
+    </div>
+    <div>
+      <!--<td>{{ form.password.label_tag }}</td>-->
+      <label for="password">密  码：</label>
+      <td>{{ form.password }}</td>
+    </div>
+
+    <div>
+      <input type="submit" value="登陆" />
+      <input type="hidden" name="next" value="{{ next }}" />
+    </div>
+  </form>
+
+  {# Assumes you setup the password_reset view in your URLconf #}
+  <p><a href="{% url 'password_reset' %}">忘记密码?</a></p>
+{% endblock %}

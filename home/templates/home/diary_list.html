@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Diary List</h1>
+
+  {% if diary_list %}
+    <ul>
+      {% for diary in diary_list %}
+        <li>
+          <a href="{{ diary.get_absolute_url }}">{{ diary.title }}</a> ({{diary.author}})
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no diary in the library.</p>
+  {% endif %}
+{% endblock %}
