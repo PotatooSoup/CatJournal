@@ -1,15 +1,70 @@
 {% extends "base_generic.html" %}
-
+{% load static %}
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+<div class="jumbotron">
   <h1>猫猫头日记</h1>
-
-  <p>这里是 <em>猫猫头档案馆</em>, 记录了猫猫头的每日表现</p>
-
+  <p>这里是猫猫头档案馆，记录了猫猫头的每日表现。</p>
   <h2>馆藏内容</h2>
-
   <p>这里收录了：</p>
   <ul>
-    <li><strong>日记数量:</strong> {{ num_diarys }}</li>
-    <li><strong>观察员数量:</strong> {{ num_authors }}</li>
+      <li><strong>日记数量：</strong> {{ num_diarys }}</li>
+      <li><strong>观察员数量：</strong> {{ num_authors }}</li>
   </ul>
+  <p><a class="btn btn-primary btn-lg" href="#" role="button">开始记录 &raquo;</a></p>
+</div>
+
+<div class="container-fluid jumbotron-container">
+  <div class="row">
+    {% for diary in latest_diaries %}
+    <div class="col-sm-4">
+      <div class="thumbnail">
+        <a href="{% url 'diary-detail' pk=diary.pk %}"></a>
+        <img src="{% static 'images/bogu.jpg' %}" alt="...">
+        <div class="caption">
+          <h3>{{ diary.title }}</h3>
+          <p>{{ diary.summary }}</p>
+          <p><a class="btn btn-default" href="{% url 'diary-detail' pk=diary.pk %}" role="button">View details &raquo;</a></p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+
+
+
+    <div class="col-sm-4">
+      <div class="thumbnail">
+        <img src="{% static 'images/xmas.jpg' %}" alt="...">
+        <div class="caption">
+          <h3>新年猫猫头</h3>
+          <p>带上了新买的围巾，迎接新年</p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="thumbnail">
+        <img src="{% static 'images/snow.jpeg' %}" alt="...">
+        <div class="caption">
+          <h3>第一次看雪</h3>
+          <p>猫猫头第一次看到下雪，甚至想尝尝雪是什么味道。</p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<footer>
+  <p>&copy; 版权所属 3104-猫猫头之家，请致电: +44 07899757773.</p>
+</footer>
+
+
+
+
+
 {% endblock %}

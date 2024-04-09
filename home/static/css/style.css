@@ -1,6 +1,32 @@
+
 .sidebar-nav {
     margin-top: 20px;
     padding: 0;
     list-style: none;
   }
+
+
+
+
+  .jumbotron {
+    font-family: "微软雅黑", sans-serif;
+    background-image: url('../images/green.jpeg');
+    background-size: cover; /* 背景图片尺寸适应 */
+    background-position: center; /* 背景图片居中 */
+    color: white; /* 文字颜色，可选 */
+    margin-top: 80px; 
+}
+@media (min-width: 768px) {
+  .jumbotron {
+      background-position-y: -350px; /* 向上移动 350 像素 */
+  }
+}
+
+
+.jumbotron-container {
+  width: 100%; /* 设置和巨幕相同的宽度 */
+}
+
+
+
   

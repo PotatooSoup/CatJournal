@@ -10,12 +10,19 @@ def index(request):
     # Generate counts of some of the main objects
     num_diarys=Diary.objects.all().count()
     num_authors=Author.objects.count()  # The 'all()' is implied by default.
+    #获得最新的三篇日记
+    latest_diaries = Diary.objects.order_by('-date')[:3]
+    context={
+        'num_diarys':num_diarys,
+        'num_authors':num_authors,
+        'latest_diaries': latest_diaries
+        }
 
     # Render the HTML template index.html with the data in the context variable
     return render(
         request,
         'index.html',
-        context={'num_diarys':num_diarys,'num_authors':num_authors},
+        context
     )
 
 from django.views import generic
