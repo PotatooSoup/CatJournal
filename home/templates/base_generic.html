@@ -25,13 +25,14 @@
         </button>
         <a class="navbar-brand" href="{% url 'index' %}">动物园</a>
     </div>
+    
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-          <li class="active"><a href="{% url 'index' %}">主页<span class="sr-only">(current)</span></a></li>
-          <li><a href="{% url 'diarys' %}">观察记录</a></li>
-          <li><a href="#">观察员</a></li>
-
+          <li {% if request.path == '/home/' %}class="active"{% endif %}><a href="{% url 'index' %}">主页</a></li>
+          <li {% if request.path == '/home/diarys/' %}class="active"{% endif %}><a href="{% url 'diarys' %}">观察记录</a></li>
+          <li {% if request.path == '/home/observers/' %}class="active"{% endif %}><a href="#">观察员</a></li>
       </ul>
+
       <ul class="nav navbar-nav navbar-right">
         <form class="navbar-form navbar-left">
           <div class="form-group">

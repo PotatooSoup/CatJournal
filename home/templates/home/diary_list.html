@@ -1,14 +1,32 @@
 {% extends "base_generic.html" %}
-
+{% load static %}
 {% block content %}
-  <h1>Diary List</h1>
+  
+  <div class="container mt-5 mb-3">
+    <style>
+      .page-title {
+        margin-top: 100px; /* 初始上外边距 */
+      }
+    </style>
+
+    <div class="row">
+      <h1 class="page-title">日记列表</h1>
 
   {% if diary_list %}
     <ul>
       {% for diary in diary_list %}
         <li>
-          <a href="{{ diary.get_absolute_url }}">{{ diary.title }}</a> ({{diary.author}})
-        </li>
+        <div class="col-lg-4 my-4">
+          <div class="card shadow" style="width: 20rem; height: 33rem;">
+              <img src="/media/{{diary.image}}" class="card-img-top" alt="..." height="250px">
+              <div class="card-body">
+                <h5 class="card-title">{{diary.title}} <br><small>by {{diary.author}}</small></h5>
+                <p class="card-text">{{diary.summary| truncatechars:210}}</p>
+                <a href="{{ diary.get_absolute_url }}" class="btn btn-primary">阅读全文 {% if user.is_superuser %}<a href="delete_blog_post/{{post.slug}}/" class="btn btn-danger mx-4">Delete Blog</a>{% endif %}</a>
+              </div>
+            </div>
+      </div>
+    </li>
       {% endfor %}
     </ul>
   {% else %}

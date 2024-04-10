@@ -1,0 +1,22 @@
+<form action="/register/" method="POST"> {% csrf_token %}
+    <div class="container mt-5">
+        <div class="mb-3">
+            <label for="username" class="form-label">观察员名称</label>
+            <input type="text" class="form-control" id="username" name="username">
+        </div>
+        
+        <div class="mb-3">
+            <label for="email" class="form-label">3104编号</label>
+            <input type="email" class="form-control" id="email" name="email">
+        </div>
+        <div class="mb-3">
+            <label for="password1" class="form-label">密码</label>
+            <input type="password" class="form-control" id="password1" name="password1">
+        </div>
+        <div class="mb-3">
+            <label for="password2" class="form-label">确认密码</label>
+            <input type="password" class="form-control" id="password2" name="password2">
+        </div>
+        <button type="submit" class="btn btn-primary">注册</button>
+    </div>
+</form>

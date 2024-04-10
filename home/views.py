@@ -25,11 +25,25 @@ def index(request):
         context
     )
 
+
 from django.views import generic
 class DiaryListView(generic.ListView):
     """Generic class-based view for a list of books."""
     model = Diary
     paginate_by = 10
+
+def post(request):
+    # 如果是 POST 请求，则处理提交的表单数据
+    if request.method == 'POST':
+        # 处理表单提交逻辑，保存日记等
+        # 你可以在这里使用表单数据创建新的 Diary 对象
+
+        # 重定向到其他页面，比如发布成功页面或者详情页
+        # 这里假设你有一个名为 'diary-detail' 的 URL 名称，用于显示日记详情
+        return redirect('diary-detail', pk=new_diary.pk)  # 假设 new_diary 是你新创建的 Diary 对象
+
+    # 如果是 GET 请求，则渲染发布日记页面的模板
+    return render(request, 'post.html')
 
 class DiaryDetailView(generic.DetailView):
     """Generic class-based detail view for a book."""
@@ -60,6 +74,39 @@ def diary_list(request):
 
 from django.contrib.auth.decorators import login_required
 
+from django.db.models import Q
 
 
 
+# def Register(request):
+#     if request.method=="POST":   
+#         username = request.POST['username']
+#         email = request.POST['email']
+#         password1 = request.POST['password1']
+#         password2 = request.POST['password2']
+        
+#         if password1 != password2:
+#             messages.error(request, "密码不匹配.")
+#             return redirect('/register')
+ 
+#         user = User.objects.create_user(username, email, password1)
+#         user.save()
+#         return render(request, 'login.html')  
+#     return render(request, "register.html")
+
+
+# def Login(request):
+#     if request.method=="POST":
+#         username = request.POST['username']
+#         password = request.POST['password']
+        
+#         user = authenticate(username=username, password=password)
+        
+#         if user is not None:
+#             login(request, user)
+#             messages.success(request, "Successfully Logged In")
+#             return redirect("/")
+#         else:
+#             messages.error(request, "Invalid Credentials")
+#         return render(request, 'blog.html')   
+#     return render(request, "login.html")
