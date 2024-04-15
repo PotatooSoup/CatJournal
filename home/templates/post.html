@@ -1,4 +1,3 @@
-
 {% extends "base_generic.html" %}
 {% load static %}
 {% block content %}
@@ -6,56 +5,58 @@
     .page-title {
       margin-top: 100px; /* 初始上外边距 */
     }
-  </style>
+</style>
 
 <h1 class="page-title">观察记录</h1>
-
-    <div class="form-group">
+<div class="form-group">
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <form method="POST" action="action.php">
+                    <form method="POST" action="{% url 'add_post' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
                         <div class="mb-4">
-                            <label class="text-xl text-gray-600">文章标题 <span class="text-red-500">*</span></label></br>
+                            <label class="text-xl text-gray-600">文章标题 <span class="text-red-500">*</span></label><br>
                             <input type="text" class="border-2 border-gray-300 p-2 w-full" name="title" id="title" value="" required>
                         </div>
-
+                    
                         <div class="mb-4">
-                            <label class="text-xl text-gray-600">记录员</label></br>
+                            <label class="text-xl text-gray-600">记录员</label><br>
                             <input type="text" class="border-2 border-gray-300 p-2 w-full" name="description" id="description" placeholder="">
                         </div>
-
+                    
                         <div class="mb-4">
-                            <label class="text-xl text-gray-600">分类</label></br>
+                            <label class="text-xl text-gray-600">分类</label><br>
                             <input type="text" class="border-2 border-gray-300 p-2 w-full" name="description" id="description" placeholder="请输入猫猫头今日表现">
                         </div>
-
+                    
                         <div class="mb-8">
-                            <label class="text-xl text-gray-600">内容 <span class="text-red-500">*</span></label></br>
-                            <textarea class="form-control" rows="5"></textarea>   
+                            <label class="text-xl text-gray-600">内容 <span class="text-red-500">*</span></label><br>
+                            <textarea class="form-control" rows="5" name="content"></textarea>   
                         </div>
                         
                         <div class="form-group">
                             <label for="exampleInputFile">上传照片</label>
-                            <input type="file" id="exampleInputFile">
-                          </div>
-
-
-                        <div class="flex p-1">
-                            <form action="/add_blogs/" enctype="multipart/form-data" method="POST"> {% csrf_token %}
-                                <div class="container mt-4">
-                                {{ form.as_p }}
-                            <button class="btn btn-primary">发布</button>
-                            </div>
-                            </form> 
+                            <input type="file" id="exampleInputFile" name="image">
                         </div>
                         
+                        <div class="container mt-4">
+                            <button type="submit" class="btn btn-primary">发布</button>
+                        </div>
+
+
                     </form>
+                    
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+{% if alert %}
+<div class="alert alert-success" role="alert">
+    发布成功！
+</div>
+{% endif %}
+
 {% endblock %}
-
-

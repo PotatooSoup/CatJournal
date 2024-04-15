@@ -5,6 +5,8 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('diarys/', views.DiaryListView.as_view(), name='diarys'),
     path('diary/<int:pk>', views.DiaryDetailView.as_view(), name='diary-detail'),
-    path('post/',views.post, name='post'),
+    
+    #path('add_diary/', views.add_diary, name='add_diary'),
+    path('post/add/',views.model_form_add,name='add_post'),
 ]
 

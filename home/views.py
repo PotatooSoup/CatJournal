@@ -27,40 +27,41 @@ def index(request):
 
 
 from django.views import generic
+from .models import Diary
 class DiaryListView(generic.ListView):
     """Generic class-based view for a list of books."""
     model = Diary
     paginate_by = 10
 
 
+from django import forms
+from . import models
+from django.shortcuts import redirect
+
+class PostModelForm(forms.ModelForm):
+    class Meta: 
+        model = models.Diary
+        fields = ["title","author","genre","summary","date","image"]
+        widgets ={
+            "title":forms.TextInput(attrs={"class":"form-control"}),
+            "summary":forms.Textarea(attrs={"class":"form-control","rows":"5"}),
+            
+        }
 
 
-def post(request):
-    # 如果是 POST 请求，则处理提交的表单数据
-    if request.method == 'POST':
-        # 处理表单提交逻辑，保存日记等
-        # 你可以在这里使用表单数据创建新的 Diary 对象
+def model_form_add(request):
+    """添加帖子 model form"""
+    if request.method == "GET":
+        form = PostModelForm()
+        return render(request,'post_mf_add.html',{"form":form})
 
-        # 重定向到其他页面，比如发布成功页面或者详情页
-        # 这里假设你有一个名为 'diary-detail' 的 URL 名称，用于显示日记详情
-        return redirect('diary-detail', pk=new_diary.pk)  # 假设 new_diary 是你新创建的 Diary 对象
-
-    # 如果是 GET 请求，则渲染发布日记页面的模板
-    return render(request, 'post.html')
-
-def add_blogs(request):
-    if request.method=="POST":
-        form = BlogPostForm(data=request.POST, files=request.FILES)
-        if form.is_valid():
-            blogpost = form.save(commit=False)
-            blogpost.author = request.user
-            blogpost.save()
-            obj = form.instance
-            alert = True
-            return render(request, "add_blogs.html",{'obj':obj, 'alert':alert})
+    form = PostModelForm(data=request.POST)
+    if form.is_valid():
+        form.save()
+        return redirect('/home/diarys/')
     else:
-        form=BlogPostForm()
-    return render(request, "add_blogs.html", {'form':form})
+        print(form.errors)
+
 
 
 class DiaryDetailView(generic.DetailView):

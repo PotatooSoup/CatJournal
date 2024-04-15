@@ -1,0 +1,38 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block content %}
+
+<style>
+    .page-title {
+      margin-top: 100px; /* 初始上外边距 */
+    }
+</style>
+
+<h1 class="page-title">观察记录</h1>
+<div class="form-group">
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <form method="POST" action="{% url 'add_post' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        {% for field in form %}
+                        <div class="mb-4">
+                            <label class="text-xl text-gray-600">{{ field.label }}:</label><br>
+                            {{ field }}
+                        </div>
+                        {% endfor %}
+                        
+                        <div class="container mt-4">
+                            <button type="submit" class="btn btn-primary">发布</button>
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

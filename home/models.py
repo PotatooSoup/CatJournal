@@ -24,14 +24,14 @@ class Diary(models.Model):
     """
     Model representing a diary
     """
-    title = models.CharField(max_length=200, help_text="标题")
-    author = models.ForeignKey('Author', on_delete=models.SET_NULL, null=True, help_text="观察员")
+    title = models.CharField(verbose_name="标题",max_length=200)
+    author = models.ForeignKey('Author', on_delete=models.SET_NULL, null=True, verbose_name="观察员")
     # Foreign Key used because book can only have one author, but authors can have multiple books
     # Author as a string rather than object because it hasn't been declared yet in the file.
-    summary = models.TextField(max_length=1000, help_text="请输入今天要记录的内容：")
-    genre = models.ManyToManyField(Genre, help_text="分类")
-    date = models.DateField(default=timezone.now, help_text="日期")
-    image = models.ImageField(upload_to="profile_pics", blank=True, null=True)
+    summary = models.TextField(max_length=1000, verbose_name="内容",help_text="请输入今天要记录的内容：")
+    genre = models.ManyToManyField(Genre, verbose_name="分类")
+    date = models.DateField(default=timezone.now, verbose_name="日期",help_text="请选择记录日期")
+    image = models.ImageField(upload_to="profile_pics", blank=True, null=True,verbose_name="照片")
     # ManyToManyField used because genre can contain many books. Books can cover many genres.
     # Genre class has already been defined so we can specify the object above.
 
