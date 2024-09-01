@@ -1,4 +1,4 @@
-# MSc-Project
+# Web Application Development
 This is a blog web application for recording Momo's growth diary, developed using Django.
 
 ## Description
@@ -11,7 +11,8 @@ The Demo of the website:
 
 
 ## Requirements
-python 3.7.5 
+python 3.7.5  
+
 Django 2.1.5
 
 ## Run the App
