@@ -6,7 +6,7 @@ This website is an interactive blog built using Django, HTML, CSS, and SQL, docu
 
 
 The Demo of the website:  
-<div align="center"><img width="550" height="300" src="https://github.com/PotatooSoup/AIAgent/blob/main/image/workflow.png"/></div>
+<div align="center"><img width="700" height="500" src="https://github.com/PotatooSoup/CatJournal/blob/main/img/95efc237f0b967e773957c83f31f9502.png"/></div>
 
 
 
